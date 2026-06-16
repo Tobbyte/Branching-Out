@@ -1,7 +1,7 @@
 import json
 
 def filter_users_by_name(name):
-    with open("users.json", "r") as file:
+    with open("users.json", "r", encoding="utf-8") as file:
         users = json.load(file)
 
     filtered_users = [user for user in users
@@ -11,7 +11,7 @@ def filter_users_by_name(name):
         print(user)
 
 def filter_users_by_age(age):
-    with open("users.json", "r") as file:
+    with open("users.json", "r", encoding="utf-8") as file:
         users = json.load(file)
 
     filtered_users = [user for user in users
@@ -21,7 +21,7 @@ def filter_users_by_age(age):
         print(user)
 
 def filter_users_by_email(email):
-    with open("users.json", "r") as file:
+    with open("users.json", "r", encoding="utf-8") as file:
         users = json.load(file)
 
     filtered_users = [user for user in users
