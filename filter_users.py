@@ -1,6 +1,8 @@
+"""Module to read files"""
 import json
 
 def filter_users_by_name(name):
+    """Filters by name"""
     with open("users.json", "r", encoding="utf-8") as file:
         users = json.load(file)
 
@@ -11,6 +13,7 @@ def filter_users_by_name(name):
         print(user)
 
 def filter_users_by_age(age):
+    """Filters by age"""
     with open("users.json", "r", encoding="utf-8") as file:
         users = json.load(file)
 
@@ -21,6 +24,7 @@ def filter_users_by_age(age):
         print(user)
 
 def filter_users_by_email(email):
+    """Filters by email"""
     with open("users.json", "r", encoding="utf-8") as file:
         users = json.load(file)
 
