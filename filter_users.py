@@ -1,35 +1,14 @@
 """Module to read files"""
 import json
 
-def filter_users_by_name(name: str, users: list):
-    """Filters by name"""
+def filter_users(search_by: str, search_value: str | int, users: list):
+    """Filters users by a search_by key and search_value."""
     filtered_users = [user for user in users
-                      if user["name"].lower() == name.lower()]
-    
-    if not filtered_users:
-        print("Name not found in users")
-    else:
-        for user in filtered_users:
-            print(user)
-
-def filter_users_by_age(age: int, users: list):
-    """Filters by age"""
-    filtered_users = [user for user in users
-                      if user.get("age") == age]
+        if str(user.get(search_by, "")).lower() == str(search_value).lower()
+    ]
 
     if not filtered_users:
-        print("Age not found in users")
-    else:
-        for user in filtered_users:
-            print(user)
-
-def filter_users_by_email(email: str, users: list):
-    """Filters by email"""
-    filtered_users = [user for user in users
-                      if user.get("email", "").lower() == email.lower()]
-
-    if not filtered_users:
-        print("Email not found in users")
+        print(f"No users found for {search_by}: {search_value}")
     else:
         for user in filtered_users:
             print(user)
@@ -49,27 +28,31 @@ def check_if_email(inp: str):
 
 def select_filter_by_input(users: list):
     """Asks for user input and calls filter fn"""
+    ## TODO:
+    # - refactor ifs on filter_option f.e. by using a config set
+    #   that defines per keyword validation rules, and error message
+    # - refactor to use while insead of recursive call
     prompt = "What would you like to filter by? ('name','age', 'email' supported): "
     filter_option = input(prompt).strip().lower()
 
     if filter_option == "name":
         name_to_search = input("Enter a name to filter users: ").strip()
         if check_if_alpha((name_to_search)):
-            filter_users_by_name(name_to_search, users)
+            filter_users(filter_option, name_to_search, users)
         else:
             print("Valid input is [a-z]")
 
     elif filter_option == "age":
         age_to_search = input("Enter a age to filter users: ").strip()
         if check_if_dec((age_to_search)):
-            filter_users_by_age(int(age_to_search), users)
+            filter_users(filter_option, age_to_search, users)
         else:
             print("Valid input is [0-9]")
 
     elif filter_option == "email":
         email_to_search = input("Enter a email to filter users: ").strip()
         if check_if_email(email_to_search):
-            filter_users_by_email(email_to_search, users)
+            filter_users(filter_option, email_to_search, users)
         else:
             print("Email must contain '@‘ and ‘.‘")
     else:
