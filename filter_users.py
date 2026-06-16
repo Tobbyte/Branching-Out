@@ -77,7 +77,7 @@ def select_filter_by_input(users: list):
         select_filter_by_input(users)
 
 
-def load_user_data() -> list[str | int]:
+def load_user_data() -> list[dict]:
     """Loads user data from file."""
     try:
         with open("users.json", "r", encoding="utf-8") as file:
