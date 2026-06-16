@@ -14,11 +14,12 @@ def filter_users_by_name(name):
 
 def filter_users_by_age(age):
     """Filters by age"""
+    ## TODO: sanitize input
     with open("users.json", "r", encoding="utf-8") as file:
         users = json.load(file)
 
     filtered_users = [user for user in users
-                      if user.get("age") == age]
+                      if user.get("age") == int(age)]
 
     for user in filtered_users:
         print(user)
